@@ -4,18 +4,22 @@ The backend for a Gantt List Product Management App
 Built with Sinatra and uses ActiveRecord to interact with a PSQL database.
 
 
-## Routes
+# Routes
 
 ### Users can view all of their projects
+GET /users/:user_id/projects
 
 ### Users can create new projects
+POST /projects/
 
 ### Users can edit existing projects - Including marking them as complete
+PUT /projects/:project_id
 
 ### User can delete existing projects
+DELETE /projects/:projects_id
 
 
-### Within Projects User can
+## Within Projects User can
 
 ### View all of the tasks within a project
 
