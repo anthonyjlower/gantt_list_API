@@ -6,6 +6,7 @@ require "sinatra/activerecord"
 # Controllers
 require "./controllers/ApplicationController"
 require "./controllers/UserController"
+require "./controllers/ProjectController"
 
 
 # Models
@@ -20,4 +21,7 @@ map ("/") {
 }
 map ('/users') {
 	run UserController
+}
+map ('/projects') {
+	run ProjectController
 }
