@@ -13,6 +13,13 @@ class UserController < ApplicationController
 		resp.to_json
 	end
 
+	# Get all projects for a user
+	get "/:id/projects" do
+		@users = User.find params[:id]
+		@userProjs = @users.projects
+		@userProjs.to_json
+	end
+
 
 
 	post "/" do
