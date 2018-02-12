@@ -13,10 +13,10 @@ GET /users/
 POST /users/
 
 ### Edit exisiting user
-PUT /users/:id
+PUT /users/:user_id
 
 ### Delete exisiting user
-DELETE /users/:id
+DELETE /users/:user_id
 
 
 ### Users can view all of their projects
@@ -36,10 +36,13 @@ DELETE /projects/:projects_id
 
 ### View all of the tasks within a project
 
-### Can create new tasks for a project
 
+### Can create new tasks for a project
+POST /tasks/
 
 ### Can edit exisiting tasks for a project - Including marking them as complete
+PUT /tasks/:task_id
 
 ### Can Delete exisiting tasks for a project
+DELETE /tasks/:task_id
 
