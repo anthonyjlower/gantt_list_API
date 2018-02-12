@@ -6,6 +6,19 @@ Built with Sinatra and uses ActiveRecord to interact with a PSQL database.
 
 # Routes
 
+### View all users in the app
+GET /users/
+
+### Create new user
+POST /users/
+
+### Edit exisiting user
+PUT /users/:id
+
+### Delete exisiting user
+DELETE /users/:id
+
+
 ### Users can view all of their projects
 GET /users/:user_id/projects
 
@@ -23,9 +36,10 @@ DELETE /projects/:projects_id
 
 ### View all of the tasks within a project
 
-### Can create new tasks for a project - Including marking them as complete
+### Can create new tasks for a project
 
-### Can edit exisiting tasks for a project
+
+### Can edit exisiting tasks for a project - Including marking them as complete
 
 ### Can Delete exisiting tasks for a project
 
