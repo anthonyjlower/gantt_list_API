@@ -1,5 +1,12 @@
 class ProjectController < ApplicationController
 
+	# Get all tasks for a project
+	get "/:id/tasks" do
+		@project = Project.find params[:id]
+		@projTasks = @project.tasks
+		@projTasks.to_json
+	end
+
 	post "/" do
 		@project = Project.new
 		@project.name = params[:name]
