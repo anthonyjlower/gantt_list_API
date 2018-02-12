@@ -29,13 +29,13 @@ POST /projects/
 PUT /projects/:project_id
 
 ### User can delete existing projects
-DELETE /projects/:projects_id
+DELETE /projects/:project_id
 
 
-## Within Projects User can
+# Within Projects User can
 
 ### View all of the tasks within a project
-
+GET /projects/:project_id/tasks
 
 ### Can create new tasks for a project
 POST /tasks/
