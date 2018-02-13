@@ -2,9 +2,9 @@ class TaskController < ApplicationController
 
 	post "/" do
 		@task = Task.new
-		@task.content = params[:name]
-		@task.start = params[:startdate]
-		@task.end = params[:enddate]
+		@task.content = params[:content]
+		@task.start = params[:start]
+		@task.end = params[:end]
 		@task.completed = params[:completed]
 		@task.belongs_to = params[:belongs_to]
 		@task.project_id = params[:project_id]
@@ -12,7 +12,7 @@ class TaskController < ApplicationController
 		resp = {
 			status: {
 				success: true,
-				message: "New task created for user #{@task.user_id}"
+				message: "New task created for project #{@task.project_id}"
 			},
 			task: @task
 		}
@@ -21,19 +21,23 @@ class TaskController < ApplicationController
 
 	put "/:id" do
 		@task = Task.find params[:id]
-		@task.content = params[:name]
-		@task.start = params[:startdate]
-		@task.end = params[:enddate]
+		@task.content = params[:content]
+		@task.start = params[:start]
+		@task.end = params[:end]
 		@task.completed = params[:completed]
 		@task.belongs_to = params[:belongs_to]
 		@task.project_id = params[:project_id]
 		@task.save
+
+		@project = Project.find params[:project_id]
+		@projTasks = @project.tasks
+		
 		resp = {
 			status: {
 				success: true,
-				message: "Successfully update task #{@task.name}"
+				message: "All of the tasks for project #{@project.id}"
 			},
-			task: @task
+			projTasks: @projTasks
 		}
 		resp.to_json
 	end

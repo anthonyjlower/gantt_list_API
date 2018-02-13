@@ -9,9 +9,9 @@ class ProjectController < ApplicationController
 
 	post "/" do
 		@project = Project.new
-		@project.content = params[:name]
-		@project.start = params[:startdate]
-		@project.end = params[:enddate]
+		@project.content = params[:content]
+		@project.start = params[:start]
+		@project.end = params[:end]
 		@project.completed = params[:completed]
 		@project.user_id = params[:user_id]
 		@project.save
@@ -28,16 +28,16 @@ class ProjectController < ApplicationController
 
 	put "/:id" do
 		@project = Project.find params[:id]
-		@project.content = params[:name]
-		@project.start = params[:startdate]
-		@project.end = params[:enddate]
+		@project.content = params[:content]
+		@project.start = params[:start]
+		@project.end = params[:end]
 		@project.completed = params[:completed]
 		@project.user_id = params[:user_id]
 		@project.save
 		resp = {
 			status: {
 				success: true,
-				message: "Successfully update project #{@project.name}"
+				message: "Successfully update project #{@project.content}"
 			},
 			project: @project
 		}
