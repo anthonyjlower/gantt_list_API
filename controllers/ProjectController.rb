@@ -9,9 +9,9 @@ class ProjectController < ApplicationController
 
 	post "/" do
 		@project = Project.new
-		@project.name = params[:name]
-		@project.startdate = params[:startdate]
-		@project.enddate = params[:enddate]
+		@project.content = params[:name]
+		@project.start = params[:startdate]
+		@project.end = params[:enddate]
 		@project.completed = params[:completed]
 		@project.user_id = params[:user_id]
 		@project.save
@@ -28,9 +28,9 @@ class ProjectController < ApplicationController
 
 	put "/:id" do
 		@project = Project.find params[:id]
-		@project.name = params[:name]
-		@project.startdate = params[:startdate]
-		@project.enddate = params[:enddate]
+		@project.content = params[:name]
+		@project.start = params[:startdate]
+		@project.end = params[:enddate]
 		@project.completed = params[:completed]
 		@project.user_id = params[:user_id]
 		@project.save

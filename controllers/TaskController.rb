@@ -2,9 +2,9 @@ class TaskController < ApplicationController
 
 	post "/" do
 		@task = Task.new
-		@task.name = params[:name]
-		@task.startdate = params[:startdate]
-		@task.enddate = params[:enddate]
+		@task.content = params[:name]
+		@task.start = params[:startdate]
+		@task.end = params[:enddate]
 		@task.completed = params[:completed]
 		@task.belongs_to = params[:belongs_to]
 		@task.project_id = params[:project_id]
@@ -21,9 +21,9 @@ class TaskController < ApplicationController
 
 	put "/:id" do
 		@task = Task.find params[:id]
-		@task.name = params[:name]
-		@task.startdate = params[:startdate]
-		@task.enddate = params[:enddate]
+		@task.content = params[:name]
+		@task.start = params[:startdate]
+		@task.end = params[:enddate]
 		@task.completed = params[:completed]
 		@task.belongs_to = params[:belongs_to]
 		@task.project_id = params[:project_id]
