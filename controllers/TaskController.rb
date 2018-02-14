@@ -43,15 +43,15 @@ class TaskController < ApplicationController
 	end
 
 	delete "/:id" do
-		@task = task.find params[:id]
+		@task = Task.find params[:id]
 		@task.delete
-		@task = task.all
+		@tasks = Task.all
 		resp = {
 			status: {
 				success: true,
 				message: "task #{@task.id} has been deleted, this is all of the remaining tasks"
 			},
-			task: @tasks
+			tasks: @tasks
 		}
 		resp.to_json
 	end
