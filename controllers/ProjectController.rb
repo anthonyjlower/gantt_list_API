@@ -52,16 +52,19 @@ class ProjectController < ApplicationController
 
 	delete "/:id" do
 		@project = Project.find params[:id]
+
+		@user_id = @project.user_id
 		@project.delete
 		
+		@user = User.find @user_id
+		@userProjs = @user.projects
 
-		@user = User.find params
 		resp = {
 			status: {
 				success: true,
 				message: "The project has been deleted, this is all of the remaining projects"
 			},
-			projects: @projects
+			projects: @userProjs
 		}
 		resp.to_json
 	end
