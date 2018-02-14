@@ -15,12 +15,16 @@ class ProjectController < ApplicationController
 		@project.completed = params[:completed]
 		@project.user_id = params[:user_id]
 		@project.save
+
+		@user = User.find params[:user_id]
+		@userProjs = @user.projects
+
 		resp = {
 			status: {
 				success: true,
 				message: "New project created for user #{@project.user_id}"
 			},
-			project: @project
+			projects: @userProjs
 		}
 		resp.to_json
 	end
@@ -49,13 +53,15 @@ class ProjectController < ApplicationController
 	delete "/:id" do
 		@project = Project.find params[:id]
 		@project.delete
-		@project = Project.all
+		
+
+		@user = User.find params
 		resp = {
 			status: {
 				success: true,
-				message: "Project #{@project.id} has been deleted, this is all of the remaining projects"
+				message: "The project has been deleted, this is all of the remaining projects"
 			},
-			project: @projects
+			projects: @projects
 		}
 		resp.to_json
 	end
