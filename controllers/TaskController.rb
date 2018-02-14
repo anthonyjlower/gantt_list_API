@@ -9,12 +9,15 @@ class TaskController < ApplicationController
 		@task.belongs_to = params[:belongs_to]
 		@task.project_id = params[:project_id]
 		@task.save
+
+		@project = Project.find params[:project_id]
+		@projTasks = @project.tasks
 		resp = {
 			status: {
 				success: true,
 				message: "New task created for project #{@task.project_id}"
 			},
-			task: @task
+			projTasks: @projTasks
 		}
 		resp.to_json
 	end
