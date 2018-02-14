@@ -51,7 +51,8 @@ class UserController < ApplicationController
 				},
 				user: @user
 			}
-			resp.to_json
+			redirect_to 'http://localhost:3000'
+			# resp.to_json
 		else
 			resp = {
 				status: {
@@ -59,7 +60,7 @@ class UserController < ApplicationController
 					message: "User login failed"
 				}
 			}
-			redirect "http://localhost:3000/"
+			resp.to_json
 		end
 	end
 
