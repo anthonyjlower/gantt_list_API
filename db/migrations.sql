@@ -9,8 +9,9 @@ CREATE TYPE completedBool AS ENUM ('true', 'false');
 
 CREATE TABLE users(
 	id SERIAL PRIMARY KEY,
-	content VARCHAR(255),
-	permission caneditBool
+	username VARCHAR(255),
+	password_digest VARCHAR(60)
+	-- permission caneditBool
 );
 
 CREATE TABLE projects(
