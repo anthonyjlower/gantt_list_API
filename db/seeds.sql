@@ -1,5 +1,4 @@
-INSERT INTO users (username, password) VALUES ('Anthony', 'can edit');
-INSERT INTO users (username, password) VALUES ('Travis', 'can edit');
+-- Create 2 users through postman
 
 INSERT INTO projects (content, start, "end", completed, user_id) VALUES ('Project 1', '2018/02/09', '2018/10/25', 'false', 1);
 INSERT INTO projects (content, start, "end", completed, user_id) VALUES ('Project 2', '2018/04/09', '2018/6/05', 'false', 1);

@@ -38,6 +38,8 @@ class UserController < ApplicationController
 		resp.to_json
 	end
 
+
+	# Route that runs when a user tries to login
 	post "/login" do
 		@pw = params[:password]
 		@user = User.find_by(username: params[:username])
@@ -57,7 +59,7 @@ class UserController < ApplicationController
 					message: "User login failed"
 				}
 			}
-			resp.to_json
+			redirect "http://localhost:3000/"
 		end
 	end
 
