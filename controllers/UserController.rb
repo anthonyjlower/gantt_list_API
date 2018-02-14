@@ -1,5 +1,7 @@
 class UserController < ApplicationController
 
+	
+
 	get "/" do
 		@users = User.all
 		resp = {
@@ -20,23 +22,44 @@ class UserController < ApplicationController
 		@userProjs.to_json
 	end
 
-
-
+	# Creates a new users from the register page
 	post "/" do
 		@user = User.new
-		@user.name = params[:name]
-		@user.permission = params[:permission]
+		@user.username = params[:username]
+		@user.password = params[:password]
 		@user.save
 		resp = {
 			status: {
 				success: true,
-				message: "Account created for #{@user.name}"
+				message: "Account created for #{@user.username}"
 			},
 			user: @user
 		}
 		resp.to_json
 	end
 
+	post "/login" do
+		@pw = params[:password]
+		@user = User.find_by(username: params[:username])
+		if @user && @user.authenticate(@pw)
+			resp = {
+				status: {
+					completed: true,
+					message: "#{@user.username} is logged in"
+				},
+				user: @user
+			}
+			resp.to_json
+		else
+			resp = {
+				status: {
+					completed: false,
+					message: "User login failed"
+				}
+			}
+			resp.to_json
+		end
+	end
 
 	put "/:id" do
 		@user = User.find params[:id]
@@ -46,14 +69,12 @@ class UserController < ApplicationController
 		resp = {
 			status: {
 				success: true,
-				message: "Account udpated for #{@user.name}"
+				message: "Account udpated for #{@user.username}"
 			},
 			user: @user
 		}
 		resp.to_json
 	end
-
-
 
 	delete "/:id" do
 		@user = User.find params[:id]
