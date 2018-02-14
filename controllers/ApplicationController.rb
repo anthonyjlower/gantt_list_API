@@ -10,6 +10,9 @@ class ApplicationController < Sinatra::Base
  		:database => 'gantt'
 	)
 
+	set :views, File.expand_path("../../views", __FILE__)
+	set :public_dir, File.expand_path("../../public", __FILE__)
+
 	configure do
 		enable :cross_origin
 	end
@@ -21,8 +24,12 @@ class ApplicationController < Sinatra::Base
 
 
 
-	get "/" do
-		"Sinatra server is running"
+	get "/login" do
+		erb :login
+	end
+
+	get "/register" do
+		erb :register
 	end
 
 
