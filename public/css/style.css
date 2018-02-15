@@ -26,3 +26,6 @@ button{
 a{
 	color: rgb(232,232,232);
 }
+.error{
+	color: red;
+}

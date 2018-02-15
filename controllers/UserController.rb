@@ -32,18 +32,26 @@ class UserController < ApplicationController
 
 	# Creates a new users from the register page
 	post "/" do
-		@user = User.new
-		@user.username = params[:username]
-		@user.password = params[:password]
-		@user.save
-		resp = {
-			status: {
-				success: true,
-				message: "Account created for #{@user.username}"
-			},
-			user: @user
-		}
-		resp.to_json
+		# Look to see if that user name exists alrady
+		@user = User.find_by(username: params[:username])
+
+		if @user
+			session[:message] = "That username is taken, please select another"
+			redirect '/register'
+		else
+			@newUser = User.new
+			@newUser.username = params[:username]
+			@newUser.password = params[:password]
+			@user.save
+			resp = {
+				status: {
+					success: true,
+					message: "Account created for #{@user.username}"
+				},
+				user: @newUser
+			}
+			redirect 'http://localhost:3000'
+		end
 	end
 
 
@@ -59,8 +67,7 @@ class UserController < ApplicationController
 				},
 				user: @user
 			}
-			redirect_to 'http://localhost:3000'
-			# resp.to_json
+			redirect 'http://localhost:3000'
 		else
 			resp = {
 				status: {
@@ -68,7 +75,8 @@ class UserController < ApplicationController
 					message: "User login failed"
 				}
 			}
-			resp.to_json
+			session[:message] = "The username and/or the password is incorrect, please try again"
+			redirect '/login'
 		end
 	end
 
