@@ -17,9 +17,17 @@ class UserController < ApplicationController
 
 	# Get all projects for a user
 	get "/:id/projects" do
-		@users = User.find params[:id]
-		@userProjs = @users.projects
-		@userProjs.to_json
+		@user = User.find params[:id]
+		@userProjs = @user.projects
+		resp = {
+			status: {
+				success: true,
+				message: "These are the projects for #{@user.username}",
+				number_of_projects: @userProjs.length
+			},
+			projects: @userProjs
+		}
+		resp.to_json
 	end
 
 	# Creates a new users from the register page

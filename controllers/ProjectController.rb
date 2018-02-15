@@ -4,7 +4,16 @@ class ProjectController < ApplicationController
 	get "/:id/tasks" do
 		@project = Project.find params[:id]
 		@projTasks = @project.tasks
-		@projTasks.to_json
+
+		resp = {
+			status: {
+				success: true,
+				message: "Here are the tasks for project #{@project.id}",
+				number_of_tasks: @projTasks.length	
+			},
+			tasks: @projTasks
+		}
+		resp.to_json
 	end
 
 	post "/" do
