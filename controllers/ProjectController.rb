@@ -65,11 +65,10 @@ class ProjectController < ApplicationController
 
 	delete "/:id" do
 		@project = Project.find params[:id]
-
-		@user_id = @project.user_id
-		@project.delete
+		@user = User.find @project.user_id
+		@project.destroy
 		
-		@user = User.find @user_id
+		
 		@userProjs = @user.projects
 
 		resp = {

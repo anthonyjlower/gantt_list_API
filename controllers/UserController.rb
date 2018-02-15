@@ -15,7 +15,7 @@ class UserController < ApplicationController
 		resp.to_json
 	end
 
-	# Get all projects for a user
+	# Get all projects for a user -- User Homepage
 	get "/projects" do
 		p session
 		p '---------------------------------------'
@@ -30,7 +30,8 @@ class UserController < ApplicationController
 				message: "These are the projects for #{@user.username}",
 				number_of_projects: @userProjs.length
 			},
-			projects: @userProjs
+			projects: @userProjs,
+			user_id: @user.id
 		}
 		resp.to_json
 	end
@@ -47,14 +48,16 @@ class UserController < ApplicationController
 			@newUser = User.new
 			@newUser.username = params[:username]
 			@newUser.password = params[:password]
-			@user.save
+			@newUser.save
 			resp = {
 				status: {
 					success: true,
-					message: "Account created for #{@user.username}"
+					message: "Account created for #{@newUser.username}"
 				},
 				user: @newUser
 			}
+			session[:message] = ""
+			session[:user_id] = @newUser.id
 			redirect 'http://localhost:3000'
 		end
 	end
@@ -72,6 +75,7 @@ class UserController < ApplicationController
 				},
 				user: @user
 			}
+			session[:message] = ""
 			session[:user_id] = @user.id
 			redirect 'http://localhost:3000'
 		else

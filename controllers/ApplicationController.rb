@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
 	set :allow_credentials, true
 
 
+	get "/" do
+		redirect "/login"
+	end
+
 	get "/login" do
 		erb :login
 	end
