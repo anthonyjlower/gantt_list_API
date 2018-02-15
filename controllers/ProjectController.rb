@@ -38,12 +38,16 @@ class ProjectController < ApplicationController
 		@project.completed = params[:completed]
 		@project.user_id = params[:user_id]
 		@project.save
+
+		@user = User.find params[:user_id]
+		@userProjs = @user.projects
+
 		resp = {
 			status: {
 				success: true,
 				message: "Successfully update project #{@project.content}"
 			},
-			project: @project
+			projects: @userProjs
 		}
 		resp.to_json
 	end
