@@ -16,8 +16,13 @@ class UserController < ApplicationController
 	end
 
 	# Get all projects for a user
-	get "/:id/projects" do
-		@user = User.find params[:id]
+	get "/projects" do
+		p session
+		p '---------------------------------------'
+		s = session 
+		p s 
+		p '---------------------------------------'
+		@user = User.find session["user_id"]
 		@userProjs = @user.projects
 		resp = {
 			status: {
@@ -67,6 +72,7 @@ class UserController < ApplicationController
 				},
 				user: @user
 			}
+			session[:user_id] = @user.id
 			redirect 'http://localhost:3000'
 		else
 			resp = {
