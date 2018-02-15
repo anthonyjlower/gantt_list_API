@@ -47,8 +47,9 @@ class TaskController < ApplicationController
 
 	delete "/:id" do
 		@task = Task.find params[:id]
+		@project = Project.find @task.project_id
 		@task.delete
-		@tasks = Task.all
+		@tasks = @project.tasks
 		resp = {
 			status: {
 				success: true,
