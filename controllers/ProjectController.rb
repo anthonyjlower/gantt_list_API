@@ -61,8 +61,6 @@ class ProjectController < ApplicationController
 		resp.to_json
 	end
 
-
-
 	delete "/:id" do
 		@project = Project.find params[:id]
 		@user = User.find @project.user_id

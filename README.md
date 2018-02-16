@@ -1,5 +1,8 @@
 # gantt_list_API
 
+[Contributions by: Travis Clark](https://github.com/Travis1282)
+
+
 The backend for Product Management App
 
 Built with Sinatra and uses ActiveRecord to interact with a PSQL database.
