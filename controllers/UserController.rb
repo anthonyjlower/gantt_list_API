@@ -43,7 +43,7 @@ class UserController < ApplicationController
 			}
 			session[:message] = ""
 			session[:user_id] = @newUser.id
-			redirect 'http://localhost:3000'
+			redirect 'https://secure-sea-57677.herokuapp.com/'
 		end
 	end
 
@@ -62,7 +62,7 @@ class UserController < ApplicationController
 			}
 			session[:message] = ""
 			session[:user_id] = @user.id
-			redirect 'http://localhost:3000'
+			redirect 'https://secure-sea-57677.herokuapp.com/'
 		else
 			resp = {
 				status: {
